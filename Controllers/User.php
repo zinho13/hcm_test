@@ -53,8 +53,8 @@
 
         // function get_update()
         // {
-            if (isset($_GET['editId'])) {
-                $id = $_GET['editId'];
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
                 if ($users = $userModel->get_user('users', $id)) {
                 } else {
                     $message = "Cette utilisateur est introuvable";

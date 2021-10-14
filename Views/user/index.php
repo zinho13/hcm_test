@@ -35,7 +35,7 @@
                         <td><?= $user->email ?></td>
                         <td><?= $user->groupe_nom ?></td>
                         <td>
-                        <a href="edit.php?editId=<?= $user->id ?>" class="btn btn-sm btn-info">Editer</a>
+                        <a href="edit.php?id=<?= $user->id ?>" class="btn btn-sm btn-info">Editer</a>
                         <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?id=<?= $user->id ?>" class='btn btn-sm btn-danger'>Supprimer</a>
                         <!-- <a onclick="return confirm('Are you sure you want to delete this entry?')" href="<?= $base_url ?>/controllers/User.php?id=<?= $user->id ?>&delete" class='btn btn-sm btn-danger'>Supprimer</a> -->
                         </td>

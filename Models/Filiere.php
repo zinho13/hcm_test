@@ -65,7 +65,7 @@
         */
         public function update($table_name, $data, $condition) {
             $stmt = $this->pdo->prepare("UPDATE filieres SET nom = ?, code = ?, type_id = ?, date_modif = ? WHERE id =".$condition['id']);
-
+            
             return $stmt->execute([$data['nom'], $data['code'], $data['type_id'], $data['date_modif']]);
         } 
 	}

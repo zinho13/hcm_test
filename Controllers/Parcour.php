@@ -61,11 +61,11 @@
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $parcours = $parcourModel->get_parcour('parcours', $id);
-        // if ($parcours = $parcourModel->get_parcour('users', $id)) {
-        // } else {
-        //     $message = "Cette utilisateur est introuvable";
-        // }
+        
+        if ($parcours = $parcourModel->get_parcour('parcours', $id)) {
+        } else {
+            $message = "Parcour indisponible";
+        }
     }
     
     // ================================================
@@ -100,7 +100,7 @@
 
     // Supression d'un parcour
 
-    // if (isset($_GET['delete'])) {
+    // if (isset($_GET['id'])) {
     //     $id = $_GET['id'];
     //     // $pdo = getPdo();
     //     $sql = "DELETE FROM `parcours` WHERE id = $id";

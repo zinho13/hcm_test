@@ -14,7 +14,7 @@
         <?php endif; ?>
     <form action="" method="post">
         <?php foreach ($filieres as $filiere): ?>
-            <input type="hidden" name="filiere_id" value="<?= isset($filiere->id) ? $parcour->id : '' ?>">
+            <input type="hidden" name="filiere_id" value="<?= isset($filiere->id) ? $filiere->id : '' ?>">
             <div class="form-group">
                 <label for="nom">Nom </label>
                 <input type="text" name="nom" id="nom" value="<?= isset($filiere->nom) ? $filiere->nom : '' ?>" class="form-control">
