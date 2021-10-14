@@ -1,6 +1,6 @@
 <?php 
 	require_once('../../config/default.php');
-    require_once('../../config/atabase.php');
+    require_once('../../config/Database.php');
     require_once('../../Http.php');
 
  	$db = new \Database();

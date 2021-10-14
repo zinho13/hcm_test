@@ -1,5 +1,5 @@
 <?php
-    require_once('../../controllers/filiere.php');
+    require_once('../../controllers/Filiere.php');
     include('../header.php');
 ?>
 
