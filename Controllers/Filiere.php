@@ -2,6 +2,7 @@
     require_once('../../config/default.php');
     require_once('../../config/database.php');
     require_once('../../Models/Filiere.php');
+    require_once('../../Http.php');
 
     /**
      * Filtre des donnée des champs textes
@@ -46,7 +47,7 @@
         if ($filiereModel->insert('filieres', $data)) {
             $url = $base_url.'/Views/filiere';
             $message = "élément enregistré avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
             $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $message = "Impossible d'enregistrer cet élément";
@@ -86,7 +87,7 @@
         if ($filiereModel->update('filieres', $data, ['id' => $id])) {
             $url = $base_url.'/Views/filiere';
             $message = "élément modifié avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
             $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $message = "Impossible de modifié cet élément";
@@ -100,15 +101,15 @@
 
     // if (isset($_GET['delete'])) {
     //     $id = $_GET['id'];
-    //     $filiereModel = getPdo();
     //     $sql = "DELETE FROM `filieres` WHERE id = $id";
         
     //     if ($filiereModel->exec($sql)) {
-    //         $url = $base_url.'/Views/filiere  ';
     //         $message = "élément supprimé avec succès";
-    //         header("Location: $url");
     //     } else {
-    //         return false;
+    //         $message = "Impossible de modifié cet élément";
     //     }
+
+    //      $url = $_SERVER['PHP_SELF'];
+    //      Http::redirectTo($url);
     // }
     

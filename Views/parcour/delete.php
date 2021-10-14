@@ -1,6 +1,7 @@
 <?php 
 	require_once('../../config/default.php');
     require_once('../../config/database.php');
+    require_once('../../Http.php');
 
  	$db = new \Database();
     $pdo = $db->getDb();
@@ -11,6 +12,6 @@
         $pdo->exec($sql);
 
         $url = $base_url.'/Views/parcour';
-        header("Location: $url");
+        Http::redirectTo($url);
     }
 ?>

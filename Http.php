@@ -3,7 +3,7 @@
     class Http {
 
         /**
-        * render(article/show)
+        * render(Controller/method)
         */
         public static function redirectTo(string $url) {
             header("Location: $url");

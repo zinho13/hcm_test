@@ -2,6 +2,7 @@
     require_once('../../config/default.php');
     require_once('../../config/database.php');
     require_once('../../Models/User.php');
+    require_once('../../Http.php');
 
     /**
      * Filtre des donnée des champs textes
@@ -41,9 +42,9 @@
         if ($userModel->insert('users', $data)) {
             $url = $base_url.'/Views/user';
             $message = "élément enregistré avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
-            $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $url = $_SERVER['PHP_SELF'];
             $message = "Impossible d'enregistrer cet élément";
             header("Location: $url");
         }
@@ -79,9 +80,9 @@
         if ($userModel->update('users', $data, ['id' => $id])) {
             $url = $base_url.'/Views/user';
             $message = "élément modifié avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
-            $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+           $url = $_SERVER['PHP_SELF'];
             $message = "Impossible de modifié cet élément";
             header("Location: $url");
         }
@@ -101,6 +102,6 @@
     //         $message = "Impossible de modifié cet élément";
     //     }
 
-    //     $url = $base_url.'/Views/user';
-    //     header("Location: $url");
+    //     $url = $_SERVER['PHP_SELF'];
+    //     Http::redirectTo($url);
     // }

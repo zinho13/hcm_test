@@ -2,6 +2,7 @@
     require_once('../../config/default.php');
     require_once('../../config/database.php');
     require_once('../../Models/Parcour.php');
+    require_once('../../Http.php');
 
     /**
      * Filtre des donnée des champs textes
@@ -46,7 +47,7 @@
         if ($parcourModel->insert('parcours', $data)) {
             $url = $base_url.'/Views/parcour';
             $message = "élément enregistré avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
             $url = $base_url.'/Views/create';
             $message = "";
@@ -87,7 +88,7 @@
         if ($parcourModel->update('parcours', $data, ['id' => $id])) {
             $url = $base_url.'/Views/parcour';
             $message = "élément modifié avec succès";
-            header("Location: $url");
+            Http::redirectTo($url);
         } else {
             $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $message = "Impossible de modifié cet élément";
@@ -102,13 +103,10 @@
 
     // if (isset($_GET['id'])) {
     //     $id = $_GET['id'];
-    //     // $pdo = getPdo();
     //     $sql = "DELETE FROM `parcours` WHERE id = $id";
         
-    //     if ($pdo->exec($sql)) {
-    //         $url = $base_url.'/Views/parcour';
+    //     if ($parcourModel->exec($sql)) {
     //         $message = "élément supprimé avec succès";
-    //         header("Location: $url");
     //     } else {
     //         return false;
     //     }
