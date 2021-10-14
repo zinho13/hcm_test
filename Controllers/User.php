@@ -71,7 +71,7 @@
         $date = date("Y-m-d H:m:s");
 
         $data['id'] = NULL;
-        $data['psudo'] = input_validation($_POST['pseudo']);
+        $data['pseudo'] = input_validation($_POST['pseudo']);
         $data['email'] = input_validation($_POST['email']); 
         $data['groupe_id'] = input_validation($_POST['groupe_id']);
         $data['date_modif'] = $date;

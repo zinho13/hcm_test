@@ -61,8 +61,8 @@
          * @param $condition (array) : listes des conditions
         */
         public function update($table_name, $data, $condition) {
-            $stmt = $this->pdo->prepare("UPDATE users SET id = ?, pseudo = ?, email = ?, groupe_id = ?, date_modif = ? WHERE id =".$condition['id']);
-
-            return $stmt->execute([$condition['id'], $data['pseudo'], $data['email'], $data['groupe_id'], $data['date_modif']]);
+            $stmt = $this->pdo->prepare("UPDATE users SET pseudo = ?, email = ?, groupe_id = ?, date_modif = ? WHERE id =".$condition['id']);
+            
+            return $stmt->execute([$data['pseudo'], $data['email'], $data['groupe_id'], $data['date_modif']]);
         } 
 	}
