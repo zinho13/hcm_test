@@ -1,7 +1,7 @@
 <?php 
     require_once('../../config/default.php');
-    require_once('../../config/database.php');
-    require_once('../../Models/Filiere.php');
+    require_once('../../config/Database.php');
+    require_once('../../models/Filiere.php');
     require_once('../../Http.php');
 
     /**
@@ -45,11 +45,11 @@
         $data['date_modif'] = $date;
         
         if ($filiereModel->insert('filieres', $data)) {
-            $url = $base_url.'/Views/filiere';
+            $url = $base_url.'views/filiere';
             $message = "élément enregistré avec succès";
             Http::redirectTo($url);
         } else {
-            $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $url = $_SERVER['PHP_SELF'];
             $message = "Impossible d'enregistrer cet élément";
             header("Location: $url");
         }
@@ -85,11 +85,11 @@
         $data['date_modif'] = $date;
 
         if ($filiereModel->update('filieres', $data, ['id' => $id])) {
-            $url = $base_url.'/Views/filiere';
+            $url = $base_url.'views/filiere';
             $message = "élément modifié avec succès";
             Http::redirectTo($url);
         } else {
-            $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $url = $_SERVER['PHP_SELF'];
             $message = "Impossible de modifié cet élément";
             header("Location: $url");
         }

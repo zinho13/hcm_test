@@ -1,5 +1,5 @@
 <?php
-    require_once('../../Controllers/Parcour.php');
+    require_once('../../controllers/Parcour.php');
     include('../header.php');
 ?>
 
@@ -33,7 +33,7 @@
             </select>
          </div>
 		    <button type="submit" name="submit_parcour" class="btn btn-primary">Enregistrer</button>
-		    <a href="<?= $base_url ?>/Views/parcour" class="btn btn-danger">Annuler</a>
+		    <a href="<?= $base_url ?>views/parcour" class="btn btn-danger">Annuler</a>
 		</form>
     </div>
   </div>

@@ -3,9 +3,12 @@
 
 		protected $db = NULL;
 		protected $host = 'localhost';
-		protected $username = 'root';
-		protected $dbname = 'db_diversity';
-		protected $password = '';
+		// protected $username = 'root';
+		// protected $dbname = 'db_diversity';
+		// protected $password = '';
+		protected $username = 'testdes189971com';
+		protected $dbname = 'dbtestdevphpzinhos189971com';
+		protected $password = 'S2nPKnR';
 
 		/**
 		* Connection à la base de donnée

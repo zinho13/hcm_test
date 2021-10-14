@@ -1,6 +1,6 @@
 <?php
     require_once('../../config/default.php');
-    require_once('../../Controllers/Filiere.php');
+    require_once('../../controllers/Filiere.php');
     include('../header.php');
 ?>
 
@@ -8,7 +8,7 @@
   <div class="card mt-5">
     <div class="card-header">
       <h2>Liste des filières </h2>
-      <a href="<?= $base_url ?>/Views/filiere/add.php" class="btb btn-sm btn-success bouton-create">Créer</a>
+      <a href="<?= $base_url ?>views/filiere/add.php" class="btb btn-sm btn-success bouton-create">Créer</a>
     </div>
     <div class="card-body">
       <table class="table table-striped">

@@ -1,5 +1,5 @@
 <?php
-    require_once('../../Controllers/filiere.php');
+    require_once('../../controllers/filiere.php');
     include('../header.php');
 ?>
 
@@ -31,7 +31,7 @@
             </select>
         </div>
         <button type="submit" name="submit_filiere" class="btn btn-primary">Enregistrer</button>
-        <a href="<?= $base_url ?>/Views/filiere" class="btn btn-danger">Annuler</a>
+        <a href="<?= $base_url ?>views/filiere" class="btn btn-danger">Annuler</a>
     </form>
     </div>
   </div>

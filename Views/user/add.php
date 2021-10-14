@@ -1,5 +1,5 @@
 <?php
-    require_once('../../Controllers/User.php');
+    require_once('../../controllers/User.php');
     include('../header.php');
 ?>
 
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
           <button type="submit" name="submit_user" class="btn btn-primary">Créer</button>
-          <a class="btn btn-danger" href="<?= $base_url ?>/Views/user">Annuler</a>
+          <a class="btn btn-danger" href="<?= $base_url ?>views/user">Annuler</a>
         </div>
       </form>
     </div>

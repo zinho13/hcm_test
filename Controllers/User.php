@@ -1,7 +1,7 @@
 <?php 
     require_once('../../config/default.php');
-    require_once('../../config/database.php');
-    require_once('../../Models/User.php');
+    require_once('../../config/Database.php');
+    require_once('../../models/User.php');
     require_once('../../Http.php');
 
     /**
@@ -40,7 +40,7 @@
         $data['date_modif'] = $date;
         
         if ($userModel->insert('users', $data)) {
-            $url = $base_url.'/Views/user';
+            $url = $base_url.'views/user';
             $message = "élément enregistré avec succès";
             Http::redirectTo($url);
         } else {
@@ -78,7 +78,7 @@
         $data['date_modif'] = $date;
 
         if ($userModel->update('users', $data, ['id' => $id])) {
-            $url = $base_url.'/Views/user';
+            $url = $base_url.'views/user';
             $message = "élément modifié avec succès";
             Http::redirectTo($url);
         } else {

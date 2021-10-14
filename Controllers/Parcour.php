@@ -1,7 +1,7 @@
 <?php 
     require_once('../../config/default.php');
-    require_once('../../config/database.php');
-    require_once('../../Models/Parcour.php');
+    require_once('../../config/Database.php');
+    require_once('../../models/Parcour.php');
     require_once('../../Http.php');
 
     /**
@@ -45,13 +45,13 @@
         $data['date_modif'] = $date;
 
         if ($parcourModel->insert('parcours', $data)) {
-            $url = $base_url.'/Views/parcour';
+            $url = $base_url.'views/parcour';
             $message = "élément enregistré avec succès";
             Http::redirectTo($url);
         } else {
-            $url = $base_url.'/Views/create';
+            $url = $base_url.'views/create';
             $message = "";
-            header("Location: $url");
+            Http::redirectTo($url);
         }
     }  
     
@@ -86,7 +86,7 @@
         $data['date_modif'] = $date;
 
         if ($parcourModel->update('parcours', $data, ['id' => $id])) {
-            $url = $base_url.'/Views/parcour';
+            $url = $base_url.'views/parcour';
             $message = "élément modifié avec succès";
             Http::redirectTo($url);
         } else {

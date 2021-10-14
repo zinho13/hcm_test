@@ -1,6 +1,6 @@
 <?php
     require_once('../../config/default.php');
-    require_once('../../Controllers/Parcour.php');
+    require_once('../../controllers/Parcour.php');
     include('../header.php');
 
     // if (isset($_GET['delete'])) {
@@ -22,7 +22,7 @@
   <div class="card mt-5">
     <div class="card-header">
       <h2>Liste des parcours </h2>
-      <a href="<?= $base_url ?>/Views/parcour/add.php" class="btn btn-sm btn-success bouton-create">Créer</a>
+      <a href="<?= $base_url ?>views/parcour/add.php" class="btn btn-sm btn-success bouton-create">Créer</a>
     </div>
     <div class="card-body">
       <table class="table table-striped">

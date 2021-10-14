@@ -1,6 +1,6 @@
 <?php 
 	require_once('../../config/default.php');
-    require_once('../../config/database.php');
+    require_once('../../config/Database.php');
     require_once('../../Http.php');
 
     $db = new \Database();
@@ -16,7 +16,7 @@
             $message = "Impossible de modifié cet élément";
         }
         
-        $url = $base_url.'/Views/user';
+        $url = $base_url.'views/user';
         Http::redirectTo($url);
     }
 ?>

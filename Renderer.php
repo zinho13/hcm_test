@@ -13,6 +13,6 @@
             require('templates/'. $path .'.html.php');
             $pageContent = ob_get_clean();
     
-            require('templates/layout.html.php');
+            require('templates/layout.php');
         }
     }

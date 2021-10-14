@@ -26,13 +26,13 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="<?= $base_url ?>/Views/user">Utilisateur</a>
+        <a class="nav-link" href="<?= $base_url ?>views/user">Utilisateur</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= $base_url ?>/Views/filiere">Filière</a>
+        <a class="nav-link" href="<?= $base_url ?>views/filiere">Filière</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= $base_url ?>/Views/parcour">Parcour</a>
+        <a class="nav-link" href="<?= $base_url ?>views/parcour">Parcour</a>
       </li>
     </ul>
   </div>

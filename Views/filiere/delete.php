@@ -1,6 +1,6 @@
 <?php 
 	require_once('../../config/default.php');
-    require_once('../../config/database.php');
+    require_once('../../config/Database.php');
     require_once('../../Http.php');
 
  	$db = new \Database();
@@ -11,7 +11,7 @@
         $sql = "DELETE FROM `filieres` WHERE id = $id";
         $pdo->exec($sql);
 
-        $url = $base_url.'/Views/filiere';
+        $url = $base_url.'views/filiere';
         Http::redirectTo($url);
     }
 ?>

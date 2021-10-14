@@ -1,5 +1,5 @@
 <?php
-    require_once('../../Controllers/Parcour.php');
+    require_once('../../controllers/Parcour.php');
     include('../header.php');
 ?>
 
@@ -34,7 +34,7 @@
             </select>
         </div>
         <button type="submit" name="update_parcour" class="btn btn-primary">Mettre à jour</button>
-        <a href="<?= $base_url ?>/Views/parcour" class="btn btn-danger">Annuler</a>
+        <a href="<?= $base_url ?>views/parcour" class="btn btn-danger">Annuler</a>
       <?php endforeach ?>
     </form>
     </div>

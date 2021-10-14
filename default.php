@@ -1,6 +1,6 @@
 <?php
 $base_url = 'http://testdevphp-zinho.s189971.mos2.atester.fr/';
-// $base_url = 'http://localhost/zidev/';
+// $base_url = 'http://localhost/zidev';
 $site_title = "ZiDev";
 $token_key_start = "]m_4W0?XF2T+L:]>%EL§PmCl,_n}):QTn-!dIZ#JOG|Wv#Ij{6=A<:WO>Ou(b°d";
 $token_key_end = "Sf4^usk@IR{.QU!^0_-,~0Gogt/Rb5GgfW_)Z/tS=c!°NaRv]uBj%:^gRo]^m2^";

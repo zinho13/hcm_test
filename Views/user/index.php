@@ -1,5 +1,5 @@
 <?php
-    require_once('../../Controllers/user.php');
+    require_once('../../controllers/User.php');
     include('../header.php');
 
     require('../../autoloader.php');
@@ -11,7 +11,7 @@
   <div class="card mt-5">
     <div class="card-header">
       <h2>Liste des utilisateurs</h2>
-      <a href="<?= $base_url ?>/Views/user/add.php" class="btn btn-sm btn-success bouton-create">Créer</a>
+      <a href="<?= $base_url ?>views/user/add.php" class="btn btn-sm btn-success bouton-create">Créer</a>
     </div>
     <div class="card-body">
       <?php if(!empty($message)): ?>
