@@ -28,8 +28,10 @@
          <div class="form-group">
             <label for="type_user">Type d'utilisateur</label>
             <select name="groupe_id" id="type_user" class="form-control">
-               <option value="1">Admin</option>
-               <option value="2" selected>simple user</option>
+               <option value="2">--</option>
+               <?php foreach($userGroup as $key => $value ): ?>
+                  <option value="<?= $value->id ?>"><?= $value->nom ?></option>
+               <?php endforeach ?>
             </select>
          </div>
          <div class="form-group">

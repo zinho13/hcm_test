@@ -26,11 +26,14 @@
                <input type="email" name="email" id="email" class="form-control" value="<?= isset($user->email) ? $user->email : '' ?>">
             </div>
             <div class="form-group">
-               <label for="type_user">Type d'utilisateur</label>
-               <select name="groupe_id" id="type_user" class="form-control">
-                   <option value="1">Admin</option>
-                   <option value="2" selected>simple user</option>
-               </select>
+               <label for="type">Type d'utilisateur</label>
+               <select name="groupe_id" id="type" class="form-control" required>
+                  <?php foreach($userGroup as $type ):
+                        $selected = isset($type) && $user->groupe_id==$type->id ? 'selected' :'';
+                    ?>
+                    <option value="<?= $type->id ?>" <?= $selected ?>> <?= $type->nom ?> </option>
+                  <?php endforeach ?>
+                </select>
             </div>
             <div class="form-group">
                <button type="submit" name="update_user" class="btn btn-primary">Mettre à jour</button>

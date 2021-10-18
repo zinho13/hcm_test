@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <title>Document</title>
+    <title>Diversity</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
