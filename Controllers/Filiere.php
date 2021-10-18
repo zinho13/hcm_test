@@ -21,6 +21,7 @@
     // Lister les filières
 
     $filiereModel = new Filiere();
+    $datas = [];
 
     $sql = "SELECT filieres.*, type_filieres.nom as type_nom FROM `filieres` JOIN `type_filieres` ON filieres.type_id=type_filieres.id";
     $filieres = $filiereModel->get_query($sql);
@@ -43,15 +44,24 @@
         $data['type_id'] = input_validation(isset($_POST['type_id']) ? $_POST['type_id'] : 2);
         $data['date_creation'] = $date;
         $data['date_modif'] = $date;
-        
-        if ($filiereModel->insert('filieres', $data)) {
-            $url = $base_url.'views/filiere';
-            $message = "élément enregistré avec succès";
-            Http::redirectTo($url);
+        $isFiliereName = $data['nom'];
+        $isFiliereCode = $data['code'];
+
+        $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE nom = '$isFiliereName' OR code = '$isFiliereCode'");
+
+        if (count($isExist) > 0) {
+            $message = "Le nom ou le code existe déjà";
+            $datas =  $data;
         } else {
-            $url = $_SERVER['PHP_SELF'];
-            $message = "Impossible d'enregistrer cet élément";
-            header("Location: $url");
+            if ($filiereModel->insert('filieres', $data)) {
+                $url = $base_url.'views/filiere';
+                $message = "élément enregistré avec succès";
+                Http::redirectTo($url);
+            } else {
+                $url = $_SERVER['PHP_SELF'];
+                $message = "Impossible d'enregistrer cet élément";
+                header("Location: $url");
+            }
         }
     } 
 
@@ -83,15 +93,23 @@
         $data['code'] = input_validation($_POST['code']); 
         $data['type_id'] = input_validation($_POST['type_id']);
         $data['date_modif'] = $date;
+        $isFiliereCode = $data['code'];
 
-        if ($filiereModel->update('filieres', $data, ['id' => $id])) {
-            $url = $base_url.'views/filiere';
-            $message = "élément modifié avec succès";
-            Http::redirectTo($url);
+        $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE nom = '$isFiliereName' OR code = '$isFiliereCode'");
+
+        if (count($isExist) > 0) {
+            $message = "Le nom ou le code existe déjà";
+            $datas =  $data;
         } else {
-            $url = $_SERVER['PHP_SELF'];
-            $message = "Impossible de modifié cet élément";
-            header("Location: $url");
+            if ($filiereModel->update('filieres', $data, ['id' => $id])) {
+                $url = $base_url.'views/filiere';
+                $message = "élément modifié avec succès";
+                Http::redirectTo($url);
+            } else {
+                $url = $_SERVER['PHP_SELF'];
+                $message = "Impossible de modifié cet élément";
+                header("Location: $url");
+            }
         }
     }
     

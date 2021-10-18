@@ -10,7 +10,9 @@
     </div>
     <div class="card-body">
       <?php if(!empty($message)): ?>
-          <?= $message; ?>
+            <div class="">
+                <?= $message; ?>
+            </div>
       <?php endif; ?>
       <form method="post" action="">
         <?php foreach($users as $user):?>

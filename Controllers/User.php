@@ -17,12 +17,18 @@
 
     // ================================================
 
-    // function index()
-    // {
+    // Liste des utilisateurs
+
         $userModel = new User();
+        $datas = [];
 
         $sql = "SELECT users.*, groupes.nom as groupe_nom FROM `users` JOIN `groupes` ON users.groupe_id=groupes.id";
-        $users = $userModel->get_query($sql);
+        
+        if ($users = $userModel->get_query($sql)) {
+            
+        } else {
+            $message = "Auccun données disponible.";
+        }
         
     // ================================================
 
@@ -38,29 +44,38 @@
         $data['groupe_id'] = input_validation($_POST['groupe_id']);
         $data['date_creation'] = $date;
         $data['date_modif'] = $date;
-        
-        if ($userModel->insert('users', $data)) {
-            $url = $base_url.'views/user';
-            $message = "élément enregistré avec succès";
-            Http::redirectTo($url);
+        $isPseudo = $data['pseudo'];
+        $isEmail = $data['email'];
+
+        $isExist = $userModel->get_query("SELECT * FROM users WHERE pseudo = '$isPseudo' OR email = '$isEmail'");
+
+        if (count($isExist) > 0) {
+            $message = "Le pseudo ou l'adresse email existe déjà";
+            $datas =  $data;
         } else {
-            $url = $_SERVER['PHP_SELF'];
-            $message = "Impossible d'enregistrer cet élément";
-            header("Location: $url");
+             if ($userModel->insert('users', $data)) {
+                $url = $base_url.'views/user';
+                $message = "élément enregistré avec succès";
+                Http::redirectTo($url);
+            } else {
+                $url = $_SERVER['PHP_SELF'];
+                $message = "Impossible d'enregistrer cet élément";
+                header("Location: $url");
+            }
         }
     }  
     
     // ================================================
 
-        // function get_update()
-        // {
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                if ($users = $userModel->get_user('users', $id)) {
-                } else {
-                    $message = "Cette utilisateur est introuvable";
-                }
+        // Get user
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            if ($users = $userModel->get_user('users', $id)) {
+            } else {
+                $message = "Cette utilisateur est introuvable";
             }
+        }
     
     // ================================================
 
@@ -76,15 +91,24 @@
         $data['email'] = input_validation($_POST['email']); 
         $data['groupe_id'] = input_validation($_POST['groupe_id']);
         $data['date_modif'] = $date;
+        $isPseudo = $data['pseudo'];
+        $isEmail = $data['email'];
 
-        if ($userModel->update('users', $data, ['id' => $id])) {
-            $url = $base_url.'views/user';
-            $message = "élément modifié avec succès";
-            Http::redirectTo($url);
+        $isExist = $userModel->get_query("SELECT * FROM users WHERE pseudo = '$isPseudo' OR email = '$isEmail'");
+
+        if (count($isExist) > 0) {
+            $message = "Le pseudo ou l'adresse email existe déjà";
+            $datas =  $data;
         } else {
-           $url = $_SERVER['PHP_SELF'];
-            $message = "Impossible de modifié cet élément";
-            header("Location: $url");
+            if ($userModel->update('users', $data, ['id' => $id])) {
+                $url = $base_url.'views/user';
+                $message = "élément modifié avec succès";
+                Http::redirectTo($url);
+            } else {
+               $url = $_SERVER['PHP_SELF'];
+                $message = "Impossible de modifié cet élément";
+                header("Location: $url");
+            }
         }
     }
     

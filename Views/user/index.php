@@ -14,35 +14,39 @@
       <a href="<?= $base_url ?>views/user/add.php" class="btn btn-sm btn-success bouton-create">Créer</a>
     </div>
     <div class="card-body">
-      <?php if(!empty($message)): ?>
-          <?= $message; ?>
-      <?php endif; ?>
-      <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Pseudo</th>
-                <th>Email</th>
-                <th>Type</th>
-                <th width="180">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-                <?php foreach($users as $user):?>
-                    <?php //var_dump((array)($user)); ?>
-                    <tr>
-                        <td hidden=""><?= $user->id ?></td>
-                        <td><?= $user->pseudo ?></td>
-                        <td><?= $user->email ?></td>
-                        <td><?= $user->groupe_nom ?></td>
-                        <td>
-                        <a href="edit.php?id=<?= $user->id ?>" class="btn btn-sm btn-info">Editer</a>
-                        <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?id=<?= $user->id ?>" class='btn btn-sm btn-danger'>Supprimer</a>
-                        <!-- <a onclick="return confirm('Are you sure you want to delete this entry?')" href="<?= $base_url ?>/controllers/User.php?id=<?= $user->id ?>&delete" class='btn btn-sm btn-danger'>Supprimer</a> -->
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+        <?php if(!empty($message)): ?>
+            <div class="">
+                <?= $message; ?>
+            </div>
+        <?php else: ?>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th width="180">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($users as $user):?>
+                        <?php //var_dump((array)($user)); ?>
+                        <tr>
+                            <td hidden=""><?= $user->id ?></td>
+                            <td><?= $user->pseudo ?></td>
+                            <td><?= $user->email ?></td>
+                            <td><?= $user->groupe_nom ?></td>
+                            <td>
+                            <a href="edit.php?id=<?= $user->id ?>" class="btn btn-sm btn-info">Editer</a>
+                            <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?id=<?= $user->id ?>" class='btn btn-sm btn-danger'>Supprimer</a>
+                            <!-- <a onclick="return confirm('Are you sure you want to delete this entry?')" href="<?= $base_url ?>/controllers/User.php?id=<?= $user->id ?>&delete" class='btn btn-sm btn-danger'>Supprimer</a> -->
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+        
     </div>
   </div>
 </div>

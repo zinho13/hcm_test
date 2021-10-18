@@ -21,6 +21,7 @@
     // Liste des parcours
 
     $parcourModel = new Parcour();
+    $datas = [];
 
     $sql = "SELECT parcours.*, filieres.nom as filiere_nom FROM `parcours` JOIN `filieres` ON parcours.filiere_id=filieres.id";
     $parcours = $parcourModel->get_query($sql);
@@ -43,15 +44,24 @@
         $data['filiere_id'] = input_validation($_POST['filiere_id']);
         $data['date_creation'] = $date;
         $data['date_modif'] = $date;
+        $isParcourName = $data['nom'];
+        $isParcourCode = $data['code'];
 
-        if ($parcourModel->insert('parcours', $data)) {
-            $url = $base_url.'views/parcour';
-            $message = "élément enregistré avec succès";
-            Http::redirectTo($url);
+        $isExist = $parcourModel->get_query("SELECT * FROM parcours WHERE nom = '$isParcourName' OR code = '$isParcourCode'");
+
+        if (count($isExist) > 0) {
+            $message = "Le nom ou le code existe déjà";
+            $datas =  $data;
         } else {
-            $url = $base_url.'views/create';
-            $message = "";
-            Http::redirectTo($url);
+            if ($parcourModel->insert('parcours', $data)) {
+                $url = $base_url.'views/parcour';
+                $message = "élément enregistré avec succès";
+                Http::redirectTo($url);
+            } else {
+                $url = $base_url.'views/create';
+                $message = "";
+                Http::redirectTo($url);
+            }
         }
     }  
     
@@ -84,15 +94,24 @@
         $data['code'] = input_validation($_POST['code']); 
         $data['filiere_id'] = input_validation($_POST['filiere_id']);
         $data['date_modif'] = $date;
+        $isParcourName = $data['nom'];
+        $isParcourCode = $data['code'];
 
-        if ($parcourModel->update('parcours', $data, ['id' => $id])) {
-            $url = $base_url.'views/parcour';
-            $message = "élément modifié avec succès";
-            Http::redirectTo($url);
+        $isExist = $parcourModel->get_query("SELECT * FROM parcours WHERE nom = '$isParcourName' OR code = '$isParcourCode'");
+
+        if (count($isExist) > 0) {
+            $message = "Le nom ou le code existe déjà";
+            $datas =  $data;
         } else {
-            $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-            $message = "Impossible de modifié cet élément";
-            header("Location: $url");
+            if ($parcourModel->update('parcours', $data, ['id' => $id])) {
+                $url = $base_url.'views/parcour';
+                $message = "élément modifié avec succès";
+                Http::redirectTo($url);
+            } else {
+                $url = "http://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                $message = "Impossible de modifié cet élément";
+                header("Location: $url");
+            }
         }
     }
     
