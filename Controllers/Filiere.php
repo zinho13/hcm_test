@@ -53,7 +53,7 @@
             $isFiliereName = $data['nom'];
             $isFiliereCode = $data['code'];
 
-            $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE nom = '$isFiliereName' OR code = '$isFiliereCode'");
+            $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE (id != '$isId') AND (nom = '$isFiliereName' OR code = '$isFiliereCode') ");
 
             if (count($isExist) > 0) {
                 $message = "Le nom ou le code existe déjà";
@@ -95,7 +95,7 @@
     if (isset($_POST['update_filiere'])) {
         if (!empty($_POST['nom']) && !empty($_POST['code'])) {
             $data = [];
-            $id = $_POST['filiere_id'];
+            $id = $isId = $_POST['filiere_id'];
             $date = date("Y-m-d H:m:s");
 
             $data['id'] = NULL;
@@ -103,14 +103,15 @@
             $data['code'] = input_validation($_POST['code']); 
             $data['type_id'] = input_validation($_POST['type_id']);
             $data['date_modif'] = $date;
+            $isFiliereName = $data['nom'];
             $isFiliereCode = $data['code'];
 
-            $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE nom = '$isFiliereName' OR code = '$isFiliereCode'");
+            $isExist = $filiereModel->get_query("SELECT * FROM filieres WHERE (id != '$isId') AND (nom = '$isFiliereName' OR code = '$isFiliereCode') ");
 
-            // if (count($isExist) > 0) {
-            //     $message = "Le nom ou le code existe déjà";
-            //     $datas =  $data;
-            // } else {
+            if (count($isExist) > 0) {
+                $message = "Le nom ou le code existe déjà";
+                $datas =  $data;
+            } else {
                 if ($filiereModel->update('filieres', $data, ['id' => $id])) {
                     $url = $base_url.'views/filiere';
                     $message = "élément modifié avec succès";
@@ -120,7 +121,7 @@
                     $message = "Impossible de modifié cet élément";
                     header("Location: $url");
                 }
-            // }
+            }
         } else {
             $message = "Veuillez remplissez les champs.";
         }

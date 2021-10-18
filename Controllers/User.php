@@ -93,8 +93,7 @@
             $data = [];
             $id = $_POST['user_id'];
             $date = date("Y-m-d H:m:s");
-            // var_dump($_POST['user_id']);
-            // die();
+
             $data['id'] = NULL;
             $data['pseudo'] = input_validation($_POST['pseudo']);
             $data['email'] = input_validation($_POST['email']); 
@@ -104,12 +103,12 @@
             $isEmail = $data['email'];
             $isId = $_POST['user_id'];
 
-            $isExist = $userModel->get_query("SELECT * FROM users WHERE id != '$isId' OR pseudo = '$isPseudo' OR email = '$isEmail' ");
+            $isExist = $userModel->get_query("SELECT * FROM users WHERE (id != '$isId') AND (pseudo = '$isPseudo' OR email = '$isEmail') ");
 
-            // if (count($isExist) > 0) {
-            //     $message = "Le pseudo ou l'adresse email existe déjà";
-            //     $datas =  $data;
-            // } else {
+            if (count($isExist) > 0) {
+                $message = "Le pseudo ou l'adresse email existe déjà";
+                $datas =  $data;
+            } else {
                 if ($userModel->update('users', $data, ['id' => $id])) {
                     $url = $base_url.'views/user';
                     $message = "élément modifié avec succès";
@@ -119,7 +118,7 @@
                     $message = "Impossible de modifié cet élément";
                     header("Location: $url");
                 }
-            // }
+            }
         } else {
             $message = "Veuillez remplissez les champs.";
         }

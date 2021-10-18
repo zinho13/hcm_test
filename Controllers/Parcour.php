@@ -96,7 +96,7 @@
     if (isset($_POST['update_parcour'])) {
         if (!empty($_POST['nom']) && !empty($_POST['code'])) {
             $data = [];
-            $id = $_POST['parcour_id'];
+            $id = $isId = $_POST['parcour_id'];
             $date = date("Y-m-d H:m:s");
 
             $data['id'] = NULL;
@@ -107,12 +107,12 @@
             $isParcourName = $data['nom'];
             $isParcourCode = $data['code'];
 
-            $isExist = $parcourModel->get_query("SELECT * FROM parcours WHERE nom = '$isParcourName' OR code = '$isParcourCode'");
+            $isExist = $parcourModel->get_query("SELECT * FROM parcours WHERE (id != '$isId') AND (nom = '$isParcourName' OR code = '$isParcourCode') ");
 
-            // if (count($isExist) > 0) {
-            //     $message = "Le nom ou le code existe déjà";
-            //     $datas =  $data;
-            // } else {
+            if (count($isExist) > 0) {
+                $message = "Le nom ou le code existe déjà";
+                $datas =  $data;
+            } else {
                 if ($parcourModel->update('parcours', $data, ['id' => $id])) {
                     $url = $base_url.'views/parcour';
                     $message = "élément modifié avec succès";
@@ -122,7 +122,7 @@
                     $message = "Impossible de modifié cet élément";
                     header("Location: $url");
                 }
-            // }
+            }
         } else {
             $message = "Veuillez remplissez les champs.";
         }
